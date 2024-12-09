@@ -10,7 +10,7 @@ Como sabem to fazendo uma penca de cursos no dio alguns básicos outros normais 
 
 ## 📌 Quem deabos é DIO?
 
-DIOS MIO! Você não sabe quem é DIO? DIO é um site top cheio de hack/nerd/ voltado com trocentos cursos e consultorias para você que não sabe dar control+c e control+v sair de lá melhor que Linux Torvald.
+DIOS MIO! Você não sabe quem é DIO? DIO é um site top cheio de hack/nerd/ voltado com trocentos cursos e consultorias para você que não sabe dar control+c e control+v sair de lá melhor que Linus Torvald.
 
 Lá tem de tudo
 
