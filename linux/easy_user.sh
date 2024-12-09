@@ -12,7 +12,7 @@ BLUE="\e[34m"
 ENDCOLOR="\e[0m"
 
 echo -e "
-_______                _   _               
+_______               _   _               
 |  ___|              | | | |              
 | |__  __ _ ___ _   _| | | |___  ___ _ __ 
 |  __|/ _' / __| | | | | | / __|/ _ \ '__|
@@ -126,13 +126,34 @@ function createDir() {
     echo -e "${YELLOW}[-]${ENDCOLOR}: Iniciando a criação de diretorios."
     for dir in "${userDirectory[@]}"; do
         mkdir "${directoryPath}/${dir}" 2>/dev/null || echo -e "${RED}[!]${ENDCOLOR}: Falha ao criar '${directoryPath}/${dir}'. Verifique se está vazio."
-        echo -e "${GREEN}[+]${ENDCOLOR}: Diretorio criado ${dir}."
-        echo -e "${YELLOW}[!]${ENDCOLOR}: Alterando permissão de diretorios."
-        chown root:root ${directoryPath}/${dir}
-        chmod 770 ${directoryPath}/${dir}
-        chmod 777 ${directoryPath}/${dir[0]}
-        echo -e "${GREEN}[+]${ENDCOLOR}: Diretorios criados com sucesso."
+        echo -e "${GREEN}[+]${ENDCOLOR}: Diretório criado ${dir}."
+        echo -e "${YELLOW}[!]${ENDCOLOR}: Alterando permissão de diretórios."
+        
+        # Alterando permissões gerais
+        chmod 770 "${directoryPath}/${dir}"
+
+        # Elemento (índice 1) /adm
+        if [[ $i -eq 1 ]]; then
+            chown root:GRP_ADM "${directoryPath}/${dir}"
+        fi
+
+        # Elemento (índice 2) /ven
+        if [[ $i -eq 2 ]]; then
+            chown root:GRP_VEN "${directoryPath}/${dir}"
+        fi
+
+        # Elemento (índice 3) /sec
+        if [[ $i -eq 3 ]]; then
+            chown root:GRP_SEC "${directoryPath}/${dir}"
+        fi
+
+        # Elemento (índice 0)
+        if [[ $i -eq 0 ]]; then
+            chmod 777 "${directoryPath}/${dir}"
+            chown root:root "${directoryPath}/${dir}"
+        fi
     done
+    echo -e "${GREEN}[+]${ENDCOLOR}: Diretórios criados com sucesso."
 }
 
 # Cria os usuários do array com seus respectivos grupos
@@ -151,8 +172,8 @@ checkInitial
 checkUser
 checkGroups
 checkDir
-createDir
 createGroups
+createDir
 createUsers
 
 echo -e "${YELLOW}[-]${ENDCOLOR} Script executado com sucesso! Dios mio!"
