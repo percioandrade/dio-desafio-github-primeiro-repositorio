@@ -81,7 +81,7 @@ function checkUser(){
 # Verifica cada grupo no array
 function checkGroups(){
     echo -e "${YELLOW}[-]${ENDCOLOR}: Verificando grupos..."
-    # Create array of unique groups
+    # Cria uma array unica para os grupos
     declare -A uniqueGroups
     for group in "${userGroups[@]}"; do
         uniqueGroups[$group]=1
